@@ -7,6 +7,7 @@ use App\Http\Controllers\EmployeeController;
 use App\Models\Attendance;
 use App\Models\Employee;
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\HelpdeskController;
 
 Route::get('/', fn () => auth()->check()
     ? redirect()->route('dashboard')
@@ -60,6 +61,10 @@ Route::middleware('auth')->group(function () {
 
     Route::resource('employees', EmployeeController::class);
 
+    Route::get('/helpdesk', function () {
+    return view('helpdesk');
+    })->name('helpdesk');
+
     Route::get('/attendance', [AttendanceController::class, 'index'])
         ->name('attendance.index');
 
@@ -79,4 +84,7 @@ Route::middleware('auth')->group(function () {
         ->name('reports.attendance.export');
 
     Route::post('/logout', [AuthController::class, 'logout'])->name('logout');
+
+    Route::post('/helpdesk/ask', [HelpdeskController::class, 'ask'])
+    ->name('helpdesk.ask');
 });

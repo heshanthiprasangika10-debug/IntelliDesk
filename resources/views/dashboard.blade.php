@@ -796,60 +796,70 @@
 <body>
 <div class="app">
 
-    <!-- Sidebar -->
-    <aside class="sidebar">
+    
+<!-- Sidebar -->
+<aside class="sidebar">
 
-        <a class="brand" href="{{ route('dashboard') }}">
-            <span class="brand-mark">I</span>
-            <span>Intelli<span>Desk</span></span>
+    <a class="brand" href="{{ route('dashboard') }}">
+        <span class="brand-mark">I</span>
+        <span>Intelli<span>Desk</span></span>
+    </a>
+
+    <div class="nav-caption">Workspace</div>
+
+    <nav class="nav" aria-label="Main navigation">
+
+        <a class="active" href="{{ route('dashboard') }}">
+            <span class="nav-icon">▦</span>
+            Dashboard
         </a>
 
-        <div class="nav-caption">Workspace</div>
+        <a href="{{ route('employees.index') }}">
+            <span class="nav-icon">♙</span>
+            Employees
+        </a>
 
-        <nav class="nav" aria-label="Main navigation">
-            <a class="active" href="{{ route('dashboard') }}">
-                <span class="nav-icon">▦</span>
-                Dashboard
-            </a>
+        <a href="{{ route('attendance.index') }}">
+            <span class="nav-icon">◷</span>
+            Attendance
+        </a>
 
-            <a href="{{ route('employees.index') }}">
-                <span class="nav-icon">♙</span>
-                Employees
-            </a>
+        <a href="{{ route('reports.attendance') }}">
+            <span class="nav-icon">▤</span>
+            Reports
+        </a>
 
-            <a href="{{ route('attendance.index') }}">
-                <span class="nav-icon">◷</span>
-                Attendance
-            </a>
+        <!-- AI Helpdesk -->
+        <a href="{{ route('helpdesk') }}">
+            <span class="nav-icon">✦</span>
+            AI Helpdesk
+        </a>
 
-            <a href="{{ route('reports.attendance') }}">
-                <span class="nav-icon">▤</span>
-                Reports
-            </a>
-        </nav>
+    </nav>
 
-        <div class="sidebar-bottom">
+    <div class="sidebar-bottom">
 
-            <div class="help-card">
-                <strong>IntelliDesk Workspace</strong>
-                <p>
-                    Employee operations, attendance tracking
-                    and reporting in one place.
-                </p>
-            </div>
-
-            <form class="logout-form"
-                  method="POST"
-                  action="{{ route('logout') }}">
-                @csrf
-
-                <button class="logout-btn" type="submit">
-                    ↪ &nbsp; Sign out
-                </button>
-            </form>
-
+        <div class="help-card">
+            <strong>IntelliDesk Workspace</strong>
+            <p>
+                Employee operations, attendance tracking
+                and reporting in one place.
+            </p>
         </div>
-    </aside>
+
+        <form class="logout-form"
+              method="POST"
+              action="{{ route('logout') }}">
+            @csrf
+
+            <button class="logout-btn" type="submit">
+                ↪ &nbsp; Sign out
+            </button>
+        </form>
+
+    </div>
+</aside>
+
 
     <!-- Main Content -->
     <main class="main">
