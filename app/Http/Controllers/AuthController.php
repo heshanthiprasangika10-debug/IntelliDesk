@@ -14,23 +14,30 @@ class AuthController extends Controller
         return view('welcome');
     }
 
-    public function login(Request $request)
-    {
-        $credentials = $request->validate([
-            'email' => ['required', 'email'],
-            'password' => ['required'],
-        ]);
+public function login(Request $request)
+{
+    $credentials = $request->validate([
+        'email' => ['required', 'email'],
+        'password' => ['required'],
+    ]);
 
-        if (Auth::attempt($credentials)) {
-            $request->session()->regenerate();
+    if (Auth::attempt($credentials)) {
+        $request->session()->regenerate();
 
-            return redirect()->intended(route('dashboard'));
+        $user = Auth::user();
+
+        if ($user->role === 'admin') {
+            return redirect()->route('admin.dashboard');
         }
 
-        return back()->withErrors([
-            'email' => 'Email or password is incorrect.',
-        ])->onlyInput('email');
+        return redirect()->route('dashboard');
     }
+
+    return back()->withErrors([
+        'email' => 'Email or password is incorrect.',
+    ])->onlyInput('email');
+}
+
 
     public function showRegister()
     {
